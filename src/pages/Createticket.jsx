@@ -14,7 +14,7 @@ const Createticket = () => {
       <Navbar />
 
       {/* Breadcrumb and Header */}
-      <div className="heading py-8 px-12 flex items-center justify-between">
+      <div className="heading py-4 px-12 flex items-center justify-between">
         <div className="flex items-center flex-wrap space-x-4">
           <Link to="/helpcenter" aria-label="Home">
             <img src={Home} alt="Home" />
@@ -30,62 +30,67 @@ const Createticket = () => {
       </div>
 
       {/* Welcome Section */}
-      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative">
-        <h1 className="text-3xl font-bold text-center mb-12 text-[#05004E]">
+      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative min-h-[420px]">
+        <h1 className="text-3xl font-bold text-center mb-12  text-[#05004E]">
           Welcome to the Help Center!
         </h1>
 
+        {/* Corporate Man */}
+        <img
+          src={BluEntMan}
+          alt="Corporate Man"
+          className="hidden 2xl:block absolute left-0 translate-x-11 -translate-y-8 bottom-0 w-[200px]  z-0"
+          // Adjust width to fit better
+        />
         {/* Flex container for tickets and icon */}
-        <div className="flex flex-wrap items-start justify-center gap-12">
-          {/* Corporate Man */}
-          <div className="hidden 2xl:block  ">
+        {/* Ticket Options */}
+        <div className="flex flex-wrap  justify-center gap-12 relative z-10">
+          {/* IT Tickets */}
+          <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
             <img
-              src={BluEntMan}
-              alt="Corporate Man"
-              className="relative left-[2rem] bottom-[5rem]  -z-1    bottom-0 "
+              src={ITTicketIcon}
+              alt="IT Tickets"
+              className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
             />
+            <h2 className="text-xl font-bold text-center mt-8 mb-2">
+              IT TICKETS
+            </h2>
+            <p className="text-center text-sm">
+              Welcome! You can raise an IT Tickets request from the options
+              provided.
+            </p>
           </div>
 
-          {/* Ticket Options */}
-          <div className="flex flex-wrap  justify-center gap-12">
-            {/* IT Tickets */}
-            <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
-              <img
-                src={ITTicketIcon}
-                alt="IT Tickets"
-                className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
-              />
-              <h2 className="text-xl font-bold text-center mt-8 mb-2">IT TICKETS</h2>
-              <p className="text-center text-sm">
-                Welcome! You can raise an IT Tickets request from the options provided.
-              </p>
-            </div>
+          {/* HR Tickets */}
+          <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
+            <img
+              src={HRTicketIcon}
+              alt="HR Tickets"
+              className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
+            />
+            <h2 className="text-xl font-bold text-center mt-8 mb-2">
+              HR TICKETS
+            </h2>
+            <p className="text-center text-sm">
+              Welcome! You can raise an HR Tickets request from the options
+              provided.
+            </p>
+          </div>
 
-            {/* HR Tickets */}
-            <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
-              <img
-                src={HRTicketIcon}
-                alt="HR Tickets"
-                className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
-              />
-              <h2 className="text-xl font-bold text-center mt-8 mb-2">HR TICKETS</h2>
-              <p className="text-center text-sm">
-                Welcome! You can raise an HR Tickets request from the options provided.
-              </p>
-            </div>
-
-            {/* Account Tickets */}
-            <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
-              <img
-                src={AccountTicketIcon}
-                alt="Account Tickets"
-                className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
-              />
-              <h2 className="text-xl font-bold text-center mt-8 mb-2">ACCOUNT TICKETS</h2>
-              <p className="text-center text-sm">
-                Welcome! You can raise an Account Tickets request from the options provided.
-              </p>
-            </div>
+          {/* Account Tickets */}
+          <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
+            <img
+              src={AccountTicketIcon}
+              alt="Account Tickets"
+              className="w-16 absolute -top-8 left-1/2 transform -translate-x-1/2"
+            />
+            <h2 className="text-xl font-bold text-center mt-8 mb-2">
+              ACCOUNT TICKETS
+            </h2>
+            <p className="text-center text-sm">
+              Welcome! You can raise an Account Tickets request from the options
+              provided.
+            </p>
           </div>
         </div>
       </div>
