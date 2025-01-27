@@ -30,21 +30,22 @@ const Createticket = () => {
       </div>
 
       {/* Welcome Section */}
-      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative min-h-[420px]">
+      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative min-h-[420px] w">
         <h1 className="text-3xl font-bold text-center mb-12  text-[#05004E]">
           Welcome to the Help Center!
         </h1>
 
         {/* Corporate Man */}
-        <img
-          src={BluEntMan}
-          alt="Corporate Man"
-          className="hidden 2xl:block absolute left-0 translate-x-11 -translate-y-8 bottom-0 w-[200px]  z-0"
-          // Adjust width to fit better
-        />
+
         {/* Flex container for tickets and icon */}
         {/* Ticket Options */}
         <div className="flex flex-wrap  justify-center gap-12 relative z-10">
+          <img
+            src={BluEntMan}
+            alt="Corporate Man"
+            className="hidden 2xl:block absolute -translate-x-[584px] -translate-y-[100px]  w-[200px]  z-0"
+            // Adjust width to fit better
+          />
           {/* IT Tickets */}
           <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
             <img
