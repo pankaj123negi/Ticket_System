@@ -35,17 +35,19 @@ const Createticket = () => {
           Welcome to the Help Center!
         </h1>
 
-        {/* Corporate Man */}
-        <img
-          src={BluEntMan}
-          alt="Corporate Man"
-          className="hidden 2xl:block absolute left-0 translate-x-11 -translate-y-8 bottom-0 w-[200px]  z-0"
-          // Adjust width to fit better
-        />
+     
         {/* Flex container for tickets and icon */}
         {/* Ticket Options */}
         <div className="flex flex-wrap  justify-center gap-12 relative z-10">
+             {/* Corporate Man */}
+        <img
+          src={BluEntMan}
+          alt="Corporate Man"
+          className=" hidden 2xl:block absolute -translate-x-[584px] -translate-y-[100px] w-[200px]  z-0"
+          // Adjust width to fit better
+        />
           {/* IT Tickets */}
+          <Link to="/it">
           <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
             <img
               src={ITTicketIcon}
@@ -60,6 +62,7 @@ const Createticket = () => {
               provided.
             </p>
           </div>
+          </Link>
 
           {/* HR Tickets */}
           <div className="gradient rounded-xl text-white p-6 w-[342px] h-[159px] shadow-md relative">
