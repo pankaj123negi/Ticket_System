@@ -24,14 +24,30 @@ const TicketTable = ({ tickets }) => {
       <tbody className="text-sm">
         {tickets.map((ticket, index) => (
           <tr key={index}>
-            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">{ticket.category}</td>
-            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">{ticket.id}</td>
-            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">{ticket.title}</td>
-            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">{ticket.status}</td>
-            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">{ticket.tag}</td>
-            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">{ticket.reporter}</td>
-            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">{ticket.assignee}</td>
-            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">{ticket.approvalStatus}</td>
+            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">
+              {ticket.category}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">
+              {ticket.id}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">
+              {ticket.title}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">
+              {ticket.status}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">
+              {ticket.tag}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">
+              {ticket.reporter}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#EBEFFF]">
+              {ticket.assignee}
+            </td>
+            <td className="py-2 px-4 border border-white bg-[#D2DCFF]">
+              {ticket.approvalStatus}
+            </td>
           </tr>
         ))}
       </tbody>
@@ -44,7 +60,12 @@ const Helpcenter = () => {
     category: index % 2 === 0 ? "Common Requests" : "Technical Support",
     id: `BLI${1234 + index}`,
     title: `Ticket Title ${index + 1}`,
-    status: index % 3 === 0 ? "Approved" : index % 3 === 1 ? "Pending" : "In Progress",
+    status:
+      index % 3 === 0
+        ? "Approved"
+        : index % 3 === 1
+        ? "Pending"
+        : "In Progress",
     tag: index % 2 === 0 ? "Dinesh, Sunil" : "Rahul, Priya",
     reporter: `Reporter ${index + 1}`,
     assignee: `Assignee ${index + 1}`,
@@ -79,7 +100,9 @@ const Helpcenter = () => {
 
   // Calculate the total number of pages
   const totalPages =
-    itemsPerPage === "" ? 1 : Math.ceil(filteredTickets.length / Number(itemsPerPage));
+    itemsPerPage === ""
+      ? 1
+      : Math.ceil(filteredTickets.length / Number(itemsPerPage));
 
   // Get tickets for the current page
   const paginatedTickets =
@@ -110,26 +133,26 @@ const Helpcenter = () => {
         </div>
 
         <Link to="/create-ticket">
-    <button className="flex items-center justify-center gap-8 green-gradient text-xs w-48 font-normal h-10 text-white rounded-lg px-4">
-      <span>Create New Ticket</span>
-      <img src={Add} alt="Add Icon" className="w-6 h-6" />
-    </button>
-  </Link>
+          <button className="flex items-center justify-center gap-8 green-gradient text-xs w-48 font-normal h-10 text-white rounded-lg px-4">
+            <span>Create New Ticket</span>
+            <img src={Add} alt="Add Icon" className="w-6 h-6" />
+          </button>
+        </Link>
       </div>
 
       <div className="filters py-4 px-12 flex flex-row-reverse gap-4 items-center flex-wrap">
-      <select
-  className="border w-48 border-green-500 rounded-lg px-3 py-2 text-gray-700"
-  value={itemsPerPage === "" ? "all" : itemsPerPage} // Show "all" when displaying all entries
-  onChange={handleItemsPerPageChange}
->
-  <option value={10}>10</option> {/* Default value */}
-  <option value={20}>20</option>
-  <option value={30}>30</option>
-  <option value={40}>40</option>
-  <option value={50}>50</option>
-  <option value="all">All</option> {/* Option to display all entries */}
-</select>
+        <select
+          className="border w-48 border-green-500 rounded-lg px-3 py-2 text-gray-700"
+          value={itemsPerPage === "" ? "all" : itemsPerPage} // Show "all" when displaying all entries
+          onChange={handleItemsPerPageChange}
+        >
+          <option value={10}>10</option> {/* Default value */}
+          <option value={20}>20</option>
+          <option value={30}>30</option>
+          <option value={40}>40</option>
+          <option value={50}>50</option>
+          <option value="all">All</option> {/* Option to display all entries */}
+        </select>
 
         <select
           className="border w-48 border-green-500 rounded-lg px-3 py-2 text-gray-700"
