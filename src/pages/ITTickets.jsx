@@ -1,53 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import Home from "../assets/home_icon.svg";
-import { FiDownloadCloud } from "react-icons/fi";
-import Select from "react-select"; // Import react-select
+import Polygon from "../assets/Polygon.svg";
+import Calender from "../assets/Calender.svg";
+import Attachment from "../assets/Attachment.svg";
 
+import Select from "react-select";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-//for custom icon from the api
-const customDropdownIndicator = () => {
-  return (
-    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none">
-      {<FiDownloadCloud />} 
-    </div>
-  );
-};
+const customStyles = `
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
+    display: block;
+    width: 100%;
+  }
+`;
 
-//to remove the cross indicator
-const customClearIndicator = () => {
-  return null; 
-};
+const ticketCategories = [
+  { value: "hardware", label: "Hardware" },
+  { value: "software", label: "Software" },
+  { value: "network", label: "Network" },
+  { value: "access-issues", label: "Access Issues" },
+];
+
+const ticketPriorities = [
+  { value: "urgent", label: "Urgent" },
+  { value: "high", label: "High" },
+  { value: "medium", label: "Medium" },
+  { value: "low", label: "Low" },
+];
+
+const ticketTags = [
+  { value: "bug", label: "Bug" },
+  { value: "feature-request", label: "Feature Request" },
+  { value: "maintenance", label: "Maintenance" },
+  { value: "question", label: "Question" },
+];
+
+const systemTools = [
+  { value: "jira", label: "JIRA" },
+  { value: "slack", label: "Slack" },
+  { value: "confluence", label: "Confluence" },
+  { value: "git", label: "Git" },
+];
+
+const watcherList = [
+  { value: "john-doe", label: "John Doe" },
+  { value: "jane-smith", label: "Jane Smith" },
+  { value: "adam-lee", label: "Adam Lee" },
+  { value: "emma-jones", label: "Emma Jones" },
+];
 
 const ITTickets = () => {
-  
+  const [formData, setFormData] = useState({
+    ticketCategory: null,
+    priority: null,
+    ticketTags: [],
+    dueDate: null,
+    title: "",
+    attachments: [],
+    systemTool: null,
+    watcherList: [],
+    description: "",
+  });
 
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-  const ticketTags = [
-    { value: "urgent", label: "Urgent" },
-    { value: "low-priority", label: "Low Priority" },
-    { value: "bug", label: "Bug" },
-    { value: "feature-request", label: "Feature Request" },
-  ];
+  const handleFileChange = (e) => {
+    handleInputChange("attachments", Array.from(e.target.files));
+  };
 
-  // Define fields with `isMulti` for the multi-select options
-  const fields = [
-    { placeholder: "Ticket Category", icon: <FiDownloadCloud />, isMulti: false, },
-    { placeholder: "Priority", icon: <FiDownloadCloud />, isMulti: false,  },
-    { placeholder: "Ticket Tags", icon: <FiDownloadCloud />, isMulti: true, options: ticketTags },
-    { placeholder: "Due Date", icon: <FiDownloadCloud />, isMulti: false },
-    { placeholder: "Title", icon: <FiDownloadCloud />, isMulti: false },
-    { placeholder: "Attachments", icon: <FiDownloadCloud />, isMulti: false },
-    { placeholder: "Select a system (tools)", icon: <FiDownloadCloud />, isMulti: false },
-    { placeholder: "Watcher List", icon: <FiDownloadCloud />, isMulti: true,options:ticketTags },
-    { placeholder: "Description", icon: <FiDownloadCloud />, isMulti: false },
-  ];
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submitted Data:", formData);
+    // Add form submission logic here, such as sending data to a backend API
+  };
 
   return (
     <div>
       <Navbar />
-      <div className="heading py-2 px-12 flex items-center justify-between">
+      <div className="heading py-4 px-6 md:px-12 flex items-center justify-between">
         <div className="flex items-center flex-wrap space-x-4">
           <Link to="/helpcenter">
             <img src={Home} alt="Home" />
@@ -62,73 +98,144 @@ const ITTickets = () => {
         </div>
       </div>
 
-      {/* Main Form Container */}
-      <div className="bg-indigo-50 h-[70vh] mx-10 rounded-2xl p-6 flex flex-col">
-        {/* Top Section: Centered Heading */}
-        <div className="flex flex-col items-center mt-2">
-          <h1 className="text-2xl font-bold text-indigo-800">IT Tickets</h1>
-          <p className="text-sm sm:text-base text-stone-900">
-            Welcome! You can raise an IT Tickets request from the options provided.
-          </p>
-        </div>
+      <div className="bg-indigo-50 mx-4 md:mx-10 rounded-2xl p-4 md:p-6 flex flex-col">
+        <form onSubmit={handleSubmit} className="flex flex-col">
+          <div className="flex flex-col items-center mt-2">
+            <h1 className="text-2xl font-bold text-indigo-800">IT Tickets</h1>
+            <p className="text-sm sm:text-base text-stone-900 text-center">
+              Welcome! You can raise an IT Tickets request from the options provided.
+            </p>
+          </div>
 
-        {/* Middle Section: Grid for Select Fields */}
-        <div className="grid grid-cols-2 flex-grow gap-x-4 p-10">
-          {fields.map((field, index) => (
-            <div key={index} className="relative p-2">
-              <div className="relative w-[40vw]">
-                {/* Use react-select for multi-select fields */}
-                {field.isMulti ? (
-                  <Select
-                    isMulti
-                    options={field.options}
-                    placeholder={field.placeholder}
-                    className="react-select-container"
-                    classNamePrefix="react-select"
-                    components={{
-                      DropdownIndicator: customDropdownIndicator, 
-                      ClearIndicator:customClearIndicator
-                    }}
-                  />
-                ) : (
-                  <select className="appearance-none w-full h-10 pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none">
-                    {/* Placeholder Option */}
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      className="text-gray-400 italic"
-                    >
-                      {field.placeholder}
-                    </option>
-                    {/* Example Options */}
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                  </select>
-                )}
-                {/* Custom Icon (outside react-select) */}
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none">
-                  {field.icon}
-                </div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-6 p-4">
+            {/* Ticket Category */}
+            <div>
+              <Select
+                options={ticketCategories}
+                placeholder="Ticket Category"
+                onChange={(value) => handleInputChange("ticketCategory", value)}
+              />
             </div>
-          ))}
-        </div>
 
-        {/* Bottom Section: Buttons on Left */}
-        <div className="flex gap-4 mx-8">
-          <button className="px-7 py-2 bg-blue-500 text-white rounded-md">
-            Send
-          </button>
-          <button className="px-7 py-2 bg-gray-300 text-black rounded-md">
-            Cancel
-          </button>
-        </div>
+            {/* Priority */}
+            <div>
+              <Select
+                options={ticketPriorities}
+                placeholder="Priority"
+                onChange={(value) => handleInputChange("priority", value)}
+              />
+            </div>
+
+            {/* Ticket Tags */}
+            <div>
+              <Select
+                isMulti
+                options={ticketTags}
+                placeholder="Ticket Tags"
+                onChange={(value) => handleInputChange("ticketTags", value)}
+              />
+            </div>
+
+            {/* Due Date */}
+            <div className="relative">
+              <style>{customStyles}</style>
+              <DatePicker
+                selected={formData.dueDate}
+                onChange={(date) => handleInputChange("dueDate", date)}
+                className="appearance-none w-full h-10 pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none text-sm bg-white"
+                placeholderText="Due Date"
+                dateFormat="MM/dd/yyyy"
+              />
+              <img
+                src={Calender}
+                alt="Calendar Icon"
+                className="absolute right-3 w-5 h-5 top-2.5"
+              />
+            </div>
+
+            {/* Title */}
+            <div>
+              <input
+                type="text"
+                placeholder="Title"
+                value={formData.title}
+                onChange={(e) => handleInputChange("title", e.target.value)}
+                className="w-full h-10 pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none text-sm bg-white"
+              />
+            </div>
+
+            {/* Attachments */}
+            <div className="relative">
+              <input
+                type="file"
+                multiple
+                onChange={handleFileChange}
+                className="hidden"
+                id="file-upload"
+              />
+              <label
+                htmlFor="file-upload"
+                className="w-full h-10 pl-3 pr-10 rounded-md border border-gray-300 bg-white flex items-center cursor-pointer"
+              >
+                {formData.attachments.length
+                  ? `${formData.attachments.length} files selected`
+                  : "Attachments"}
+                <img
+                  src={Attachment}
+                  alt="Attachment Icon"
+                  className="absolute right-3 w-5 h-5 top-2.5"
+                />
+              </label>
+            </div>
+
+            {/* System Tools */}
+            <div>
+              <Select
+                options={systemTools}
+                placeholder="Select a system (tools)"
+                onChange={(value) => handleInputChange("systemTool", value)}
+              />
+            </div>
+
+            {/* Watcher List */}
+            <div>
+              <Select
+                isMulti
+                options={watcherList}
+                placeholder="Watcher List"
+                onChange={(value) => handleInputChange("watcherList", value)}
+              />
+            </div>
+
+            {/* Description */}
+            <div className="relative">
+              <textarea
+                placeholder="Description"
+                value={formData.description}
+                onChange={(e) => handleInputChange("description", e.target.value)}
+                className="w-full h-[40px] pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none text-sm bg-white resize-y"
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="flex gap-4 mx-4">
+            <button
+              type="submit"
+              className="w-[172px] h-[40px] gradient text-white rounded-md"
+            >
+              Send
+            </button>
+            <button
+              type="button"
+              className="w-[172px] h-[40px] bg-white text-black rounded-md"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
-
 
 export default ITTickets;
