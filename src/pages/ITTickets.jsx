@@ -5,18 +5,19 @@ import Home from "../assets/home_icon.svg";
 import Polygon from "../assets/Polygon.svg";
 import Calender from "../assets/Calender.svg";
 import Attachment from "../assets/Attachment.svg";
+import CustomDatePicker from "../components/CustomDatePicker";
 
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const customStyles = `
-  .react-datepicker-wrapper,
-  .react-datepicker__input-container {
-    display: block;
-    width: 100%;
-  }
-`;
+// const customStyles = `
+//   .react-datepicker-wrapper,
+//   .react-datepicker__input-container {
+//     display: block;
+//     width: 100%;
+//   }
+// `;
 
 const ticketCategories = [
   { value: "hardware", label: "Hardware" },
@@ -103,7 +104,8 @@ const ITTickets = () => {
           <div className="flex flex-col items-center mt-2">
             <h1 className="text-2xl font-bold text-indigo-800">IT Tickets</h1>
             <p className="text-sm sm:text-base text-stone-900 text-center">
-              Welcome! You can raise an IT Tickets request from the options provided.
+              Welcome! You can raise an IT Tickets request from the options
+              provided.
             </p>
           </div>
 
@@ -138,7 +140,7 @@ const ITTickets = () => {
 
             {/* Due Date */}
             <div className="relative">
-              <style>{customStyles}</style>
+              {/* <style>{customStyles}</style>
               <DatePicker
                 selected={formData.dueDate}
                 onChange={(date) => handleInputChange("dueDate", date)}
@@ -150,7 +152,15 @@ const ITTickets = () => {
                 src={Calender}
                 alt="Calendar Icon"
                 className="absolute right-3 w-5 h-5 top-2.5"
-              />
+              /> */}
+              <div>
+                <CustomDatePicker
+                  value={formData.dueDate}
+                  onChange={(newValue) =>
+                    handleInputChange("dueDate", newValue)
+                  }
+                />
+              </div>
             </div>
 
             {/* Title */}
@@ -212,7 +222,9 @@ const ITTickets = () => {
               <textarea
                 placeholder="Description"
                 value={formData.description}
-                onChange={(e) => handleInputChange("description", e.target.value)}
+                onChange={(e) =>
+                  handleInputChange("description", e.target.value)
+                }
                 className="w-full h-[40px] pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none text-sm bg-white resize-y"
               ></textarea>
             </div>

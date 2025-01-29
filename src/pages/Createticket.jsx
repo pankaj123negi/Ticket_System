@@ -30,7 +30,7 @@ const Createticket = () => {
       </div>
 
       {/* Welcome Section */}
-      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative min-h-[420px]">
+      <div className="py-16 px-8 m-10 lg:px-24 bg-[#F4F7FE] rounded-lg relative min-h-[420px] w">
         <h1 className="text-3xl font-bold text-center mb-12  text-[#05004E]">
           Welcome to the Help Center!
         </h1>
